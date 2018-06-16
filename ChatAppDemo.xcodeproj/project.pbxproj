@@ -12,6 +12,7 @@
 		8464440E2068EB2E00D48A21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8464440C2068EB2E00D48A21 /* Main.storyboard */; };
 		846444102068EB2E00D48A21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8464440F2068EB2E00D48A21 /* Assets.xcassets */; };
 		846444132068EB2E00D48A21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846444112068EB2E00D48A21 /* LaunchScreen.storyboard */; };
+		84716DFB20D4CA6D00564EDD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84716DFA20D4CA6D00564EDD /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		8464440F2068EB2E00D48A21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		846444122068EB2E00D48A21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		846444142068EB2E00D48A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84716DFA20D4CA6D00564EDD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,71 @@
 		846444072068EB2E00D48A21 /* ChatAppDemo */ = {
 			isa = PBXGroup;
 			children = (
-				846444082068EB2E00D48A21 /* AppDelegate.swift */,
+				84716DF720D4C9F900564EDD /* Extension */,
+				84716DF620D4C9DA00564EDD /* Resources */,
+				84716DF520D4C9C700564EDD /* Supports */,
+				84716DF420D4C9B800564EDD /* Views */,
+				84716DF320D4C9AC00564EDD /* Module */,
 				8464440A2068EB2E00D48A21 /* ViewController.swift */,
-				8464440C2068EB2E00D48A21 /* Main.storyboard */,
-				8464440F2068EB2E00D48A21 /* Assets.xcassets */,
-				846444112068EB2E00D48A21 /* LaunchScreen.storyboard */,
-				846444142068EB2E00D48A21 /* Info.plist */,
 			);
 			path = ChatAppDemo;
+			sourceTree = "<group>";
+		};
+		84716DF320D4C9AC00564EDD /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				84716DF920D4CA5500564EDD /* Common */,
+				84716DF820D4CA4D00564EDD /* Utils */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		84716DF420D4C9B800564EDD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8464440C2068EB2E00D48A21 /* Main.storyboard */,
+				846444112068EB2E00D48A21 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		84716DF520D4C9C700564EDD /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				846444082068EB2E00D48A21 /* AppDelegate.swift */,
+				846444142068EB2E00D48A21 /* Info.plist */,
+			);
+			path = Supports;
+			sourceTree = "<group>";
+		};
+		84716DF620D4C9DA00564EDD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8464440F2068EB2E00D48A21 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		84716DF720D4C9F900564EDD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		84716DF820D4CA4D00564EDD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		84716DF920D4CA5500564EDD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				84716DFA20D4CA6D00564EDD /* Constants.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +197,7 @@
 			files = (
 				8464440B2068EB2E00D48A21 /* ViewController.swift in Sources */,
 				846444092068EB2E00D48A21 /* AppDelegate.swift in Sources */,
+				84716DFB20D4CA6D00564EDD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,7 +339,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ChatAppDemo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ChatAppDemo/Supports/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anbu.ChatAppDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -293,7 +353,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ChatAppDemo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ChatAppDemo/Supports/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anbu.ChatAppDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
