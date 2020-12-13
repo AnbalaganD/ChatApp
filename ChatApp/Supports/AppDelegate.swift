@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  ChatAppDemo
+//  ChatApp
 //
 //  Created by Admin on 26/03/18.
 //  Copyright © 2018 Admin. All rights reserved.

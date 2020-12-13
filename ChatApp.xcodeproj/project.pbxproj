@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		846444052068EB2E00D48A21 /* ChatAppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatAppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		846444052068EB2E00D48A21 /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846444082068EB2E00D48A21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8464440A2068EB2E00D48A21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8464440D2068EB2E00D48A21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		846443FC2068EB2D00D48A21 = {
 			isa = PBXGroup;
 			children = (
-				846444072068EB2E00D48A21 /* ChatAppDemo */,
+				846444072068EB2E00D48A21 /* ChatApp */,
 				846444062068EB2E00D48A21 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,29 +48,27 @@
 		846444062068EB2E00D48A21 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				846444052068EB2E00D48A21 /* ChatAppDemo.app */,
+				846444052068EB2E00D48A21 /* ChatApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		846444072068EB2E00D48A21 /* ChatAppDemo */ = {
+		846444072068EB2E00D48A21 /* ChatApp */ = {
 			isa = PBXGroup;
 			children = (
-				84716DF720D4C9F900564EDD /* Extension */,
 				84716DF620D4C9DA00564EDD /* Resources */,
 				84716DF520D4C9C700564EDD /* Supports */,
 				84716DF420D4C9B800564EDD /* Views */,
 				84716DF320D4C9AC00564EDD /* Module */,
 				8464440A2068EB2E00D48A21 /* ViewController.swift */,
 			);
-			path = ChatAppDemo;
+			path = ChatApp;
 			sourceTree = "<group>";
 		};
 		84716DF320D4C9AC00564EDD /* Module */ = {
 			isa = PBXGroup;
 			children = (
 				84716DF920D4CA5500564EDD /* Common */,
-				84716DF820D4CA4D00564EDD /* Utils */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -101,20 +99,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		84716DF720D4C9F900564EDD /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		84716DF820D4CA4D00564EDD /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		84716DF920D4CA5500564EDD /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,9 +110,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		846444042068EB2E00D48A21 /* ChatAppDemo */ = {
+		846444042068EB2E00D48A21 /* ChatApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 846444172068EB2E00D48A21 /* Build configuration list for PBXNativeTarget "ChatAppDemo" */;
+			buildConfigurationList = 846444172068EB2E00D48A21 /* Build configuration list for PBXNativeTarget "ChatApp" */;
 			buildPhases = (
 				846444012068EB2E00D48A21 /* Sources */,
 				846444022068EB2E00D48A21 /* Frameworks */,
@@ -138,9 +122,9 @@
 			);
 			dependencies = (
 			);
-			name = ChatAppDemo;
+			name = ChatApp;
 			productName = ChatAppDemo;
-			productReference = 846444052068EB2E00D48A21 /* ChatAppDemo.app */;
+			productReference = 846444052068EB2E00D48A21 /* ChatApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -159,7 +143,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 846444002068EB2E00D48A21 /* Build configuration list for PBXProject "ChatAppDemo" */;
+			buildConfigurationList = 846444002068EB2E00D48A21 /* Build configuration list for PBXProject "ChatApp" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -172,7 +156,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				846444042068EB2E00D48A21 /* ChatAppDemo */,
+				846444042068EB2E00D48A21 /* ChatApp */,
 			);
 		};
 /* End PBXProject section */
@@ -339,9 +323,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "$(SRCROOT)/ChatAppDemo/Supports/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ChatApp/Supports/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.anbu.ChatAppDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anbu.chatapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -353,9 +337,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "$(SRCROOT)/ChatAppDemo/Supports/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ChatApp/Supports/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.anbu.ChatAppDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anbu.chatapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -365,7 +349,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		846444002068EB2E00D48A21 /* Build configuration list for PBXProject "ChatAppDemo" */ = {
+		846444002068EB2E00D48A21 /* Build configuration list for PBXProject "ChatApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				846444152068EB2E00D48A21 /* Debug */,
@@ -374,7 +358,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		846444172068EB2E00D48A21 /* Build configuration list for PBXNativeTarget "ChatAppDemo" */ = {
+		846444172068EB2E00D48A21 /* Build configuration list for PBXNativeTarget "ChatApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				846444182068EB2E00D48A21 /* Debug */,

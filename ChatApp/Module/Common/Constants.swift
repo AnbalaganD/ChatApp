@@ -1,6 +1,6 @@
 //
 //  Constants.swift
-//  ChatAppDemo
+//  ChatApp
 //
 //  Created by Admin on 16/06/18.
 //  Copyright © 2018 Admin. All rights reserved.
