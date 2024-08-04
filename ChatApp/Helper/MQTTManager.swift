@@ -10,38 +10,41 @@ import MQTTNIO
 import Foundation
 
 final class MQTTManager {
-    private let topic = "topic/state"
-    
     static let shared = MQTTManager()
     
-    private lazy var mqttClient = {
-        let client = MQTTClient(
+    private var mqttClient: MQTTClient!
+    
+    func configure(
+        host: String,
+        port: Int,
+        topic: String
+    ) {
+        mqttClient = MQTTClient(
             configuration: .init(
-                target: .host("192.168.31.2", port: 1883)
+                target: .host(host, port: port)
             ),
             eventLoopGroupProvider: .createNew
         )
-        client.connect()
-        return client
-    }()
-    
-    private init() {
-        subscripe()
-        receiveMessage()
+        mqttClient.connect()
+        subscripe(topic: topic)
     }
     
-    private func subscripe() {
+    private func subscripe(topic: String) {
         mqttClient.subscribe(
             to: [
                 MQTTSubscription(
                     topicFilter: topic,
-                    qos: .exactlyOnce
+                    qos: .exactlyOnce,
+                    options: .init(noLocalMessages: true)
                 )
             ]
         )
     }
     
-    func sendMessage(message: String) {
+    func sendMessage(
+        topic: String,
+        message: String
+    ) {
         mqttClient.publish(
             MQTTMessage(
                 topic: topic,
@@ -51,11 +54,7 @@ final class MQTTManager {
         )
     }
     
-    func receiveMessage() {
-        Task {
-            for await message in mqttClient.messages {
-                print(message.payload.string ?? "NO MESSAGE")
-            }
-        }
+    func getMessage() -> AsyncStream<MQTTMessage> {
+        return mqttClient.messages
     }
 }
