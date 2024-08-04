@@ -3,27 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		846444092068EB2E00D48A21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846444082068EB2E00D48A21 /* AppDelegate.swift */; };
 		8464440B2068EB2E00D48A21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464440A2068EB2E00D48A21 /* ViewController.swift */; };
-		8464440E2068EB2E00D48A21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8464440C2068EB2E00D48A21 /* Main.storyboard */; };
 		846444102068EB2E00D48A21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8464440F2068EB2E00D48A21 /* Assets.xcassets */; };
 		846444132068EB2E00D48A21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846444112068EB2E00D48A21 /* LaunchScreen.storyboard */; };
 		84716DFB20D4CA6D00564EDD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84716DFA20D4CA6D00564EDD /* Constants.swift */; };
+		99B8C0C52C5F765600F98A16 /* MQTTManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B8C0C42C5F765600F98A16 /* MQTTManager.swift */; };
+		99B8C0C82C5F76CF00F98A16 /* MQTTNIO in Frameworks */ = {isa = PBXBuildFile; productRef = 99B8C0C72C5F76CF00F98A16 /* MQTTNIO */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		846444052068EB2E00D48A21 /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846444082068EB2E00D48A21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8464440A2068EB2E00D48A21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8464440D2068EB2E00D48A21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8464440F2068EB2E00D48A21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		846444122068EB2E00D48A21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		846444142068EB2E00D48A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84716DFA20D4CA6D00564EDD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		99B8C0C42C5F765600F98A16 /* MQTTManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99B8C0C82C5F76CF00F98A16 /* MQTTNIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,9 +58,11 @@
 		846444072068EB2E00D48A21 /* ChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				99B8C0C92C5F76F700F98A16 /* Misc */,
+				99B8C0C32C5F764000F98A16 /* Helper */,
+				99B8C0C22C5F75A200F98A16 /* Storyborad */,
 				84716DF620D4C9DA00564EDD /* Resources */,
 				84716DF520D4C9C700564EDD /* Supports */,
-				84716DF420D4C9B800564EDD /* Views */,
 				84716DF320D4C9AC00564EDD /* Module */,
 				8464440A2068EB2E00D48A21 /* ViewController.swift */,
 			);
@@ -71,15 +75,6 @@
 				84716DF920D4CA5500564EDD /* Common */,
 			);
 			path = Module;
-			sourceTree = "<group>";
-		};
-		84716DF420D4C9B800564EDD /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				8464440C2068EB2E00D48A21 /* Main.storyboard */,
-				846444112068EB2E00D48A21 /* LaunchScreen.storyboard */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		84716DF520D4C9C700564EDD /* Supports */ = {
@@ -105,6 +100,29 @@
 				84716DFA20D4CA6D00564EDD /* Constants.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		99B8C0C22C5F75A200F98A16 /* Storyborad */ = {
+			isa = PBXGroup;
+			children = (
+				846444112068EB2E00D48A21 /* LaunchScreen.storyboard */,
+			);
+			path = Storyborad;
+			sourceTree = "<group>";
+		};
+		99B8C0C32C5F764000F98A16 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				99B8C0C42C5F765600F98A16 /* MQTTManager.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		99B8C0C92C5F76F700F98A16 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,8 +151,9 @@
 		846443FD2068EB2E00D48A21 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1600;
 				ORGANIZATIONNAME = Admin;
 				TargetAttributes = {
 					846444042068EB2E00D48A21 = {
@@ -152,6 +171,9 @@
 				Base,
 			);
 			mainGroup = 846443FC2068EB2D00D48A21;
+			packageReferences = (
+				99B8C0C62C5F76CF00F98A16 /* XCRemoteSwiftPackageReference "mqtt-nio" */,
+			);
 			productRefGroup = 846444062068EB2E00D48A21 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -168,7 +190,6 @@
 			files = (
 				846444132068EB2E00D48A21 /* LaunchScreen.storyboard in Resources */,
 				846444102068EB2E00D48A21 /* Assets.xcassets in Resources */,
-				8464440E2068EB2E00D48A21 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8464440B2068EB2E00D48A21 /* ViewController.swift in Sources */,
+				99B8C0C52C5F765600F98A16 /* MQTTManager.swift in Sources */,
 				846444092068EB2E00D48A21 /* AppDelegate.swift in Sources */,
 				84716DFB20D4CA6D00564EDD /* Constants.swift in Sources */,
 			);
@@ -188,14 +210,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8464440C2068EB2E00D48A21 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8464440D2068EB2E00D48A21 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		846444112068EB2E00D48A21 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -211,6 +225,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -232,6 +247,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -243,6 +259,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -257,7 +274,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -270,6 +287,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -291,6 +309,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -302,6 +321,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -310,10 +330,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -324,10 +345,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/ChatApp/Supports/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.anbu.chatapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -338,10 +367,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/ChatApp/Supports/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.anbu.chatapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -368,6 +405,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		99B8C0C62C5F76CF00F98A16 /* XCRemoteSwiftPackageReference "mqtt-nio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sroebert/mqtt-nio.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		99B8C0C72C5F76CF00F98A16 /* MQTTNIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 99B8C0C62C5F76CF00F98A16 /* XCRemoteSwiftPackageReference "mqtt-nio" */;
+			productName = MQTTNIO;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 846443FD2068EB2E00D48A21 /* Project object */;
 }
