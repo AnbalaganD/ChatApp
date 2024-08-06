@@ -83,12 +83,24 @@ private extension ChatViewController {
         chatTableView.separatorStyle = .none
         chatTableView.estimatedRowHeight = 120
         chatTableView.rowHeight = UITableView.automaticDimension
+        let tableViewInset = chatTableView.contentInset
+        chatTableView.contentInset = .init(
+            top: tableViewInset.top,
+            left: tableViewInset.left,
+            bottom: 10,
+            right: tableViewInset.right
+        )
         view.addSubview(chatTableView)
 
         let chatBottomControlContainer = UIView(frame: .zero)
         chatBottomControlContainer.translatesAutoresizingMaskIntoConstraints = false
-        chatBottomControlContainer.backgroundColor = .red
+        chatBottomControlContainer.backgroundColor = .systemBackground
         view.addSubview(chatBottomControlContainer)
+        
+        let chatControlDivider = UIView(frame: .zero)
+        chatControlDivider.translatesAutoresizingMaskIntoConstraints = false
+        chatControlDivider.backgroundColor = .gray.withAlphaComponent(0.1)
+        chatBottomControlContainer.addSubview(chatControlDivider)
         
         chatTextField = UITextField(frame: .zero)
         chatTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -113,11 +125,16 @@ private extension ChatViewController {
             chatTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             chatTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             chatTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            chatTableView.bottomAnchor.constraint(equalTo: chatBottomControlContainer.bottomAnchor),
+            chatTableView.bottomAnchor.constraint(equalTo: chatBottomControlContainer.topAnchor),
             
             chatBottomControlContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             chatBottomControlContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            chatBottomControlContainer.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.bottomAnchor),
+            chatBottomControlContainer.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor),
+            
+            chatControlDivider.leadingAnchor.constraint(equalTo: chatBottomControlContainer.leadingAnchor),
+            chatControlDivider.trailingAnchor.constraint(equalTo: chatBottomControlContainer.trailingAnchor),
+            chatControlDivider.topAnchor.constraint(equalTo: chatBottomControlContainer.topAnchor),
+            chatControlDivider.heightAnchor.constraint(equalToConstant: 0.5),
             
             chatTextField.leadingAnchor.constraint(equalTo: chatBottomControlContainer.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             chatTextField.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -4),

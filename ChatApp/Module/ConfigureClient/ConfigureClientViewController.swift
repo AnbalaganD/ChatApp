@@ -104,7 +104,7 @@ class ConfigureClientViewController: UIViewController {
         ])
         
 #if DEBUG
-        hostTextField.text = "192.168.41.230" //"192.168.31.2"
+        hostTextField.text = "192.168.31.2"
         portTextField.text = "1883"
         topicTextField.text = "topic/state"
 #endif
