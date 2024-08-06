@@ -10,7 +10,8 @@ import UIKit
 
 final class ChatViewController: UIViewController {
     private var chatTableView: UITableView!
-    private var chatTextField: UITextField!
+    private var chatTextViewPlaceholderLabel: UILabel!
+    private var chatTextView: UITextView!
     
     private let lock = NSLock()
     private let mqttManager = MQTTManager.shared
@@ -55,7 +56,7 @@ final class ChatViewController: UIViewController {
     }
     
     @objc private func sendMessage() {
-        if let message = chatTextField.text, !message.isEmpty {
+        if let message = chatTextView.text, !message.isEmpty {
             mqttManager.sendMessage(
                 topic: topic,
                 message: message
@@ -68,7 +69,7 @@ final class ChatViewController: UIViewController {
                 chatTableView.reloadData()
             }
             
-            chatTextField.text = ""
+            chatTextView.text = ""
         }
     }
 }
@@ -76,10 +77,11 @@ final class ChatViewController: UIViewController {
 private extension ChatViewController {
     func setupView() {
         title = "Chat"
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .chatBackground
         
         chatTableView = UITableView(frame: .zero)
         chatTableView.translatesAutoresizingMaskIntoConstraints = false
+        chatTableView.backgroundColor = .clear
         chatTableView.separatorStyle = .none
         chatTableView.estimatedRowHeight = 120
         chatTableView.rowHeight = UITableView.automaticDimension
@@ -95,19 +97,42 @@ private extension ChatViewController {
         let chatBottomControlContainer = UIView(frame: .zero)
         chatBottomControlContainer.translatesAutoresizingMaskIntoConstraints = false
         chatBottomControlContainer.backgroundColor = .systemBackground
+        chatBottomControlContainer.layer.cornerRadius = 22.5
+        chatBottomControlContainer.layer.masksToBounds = true
         view.addSubview(chatBottomControlContainer)
         
-        let chatControlDivider = UIView(frame: .zero)
-        chatControlDivider.translatesAutoresizingMaskIntoConstraints = false
-        chatControlDivider.backgroundColor = .gray.withAlphaComponent(0.1)
-        chatBottomControlContainer.addSubview(chatControlDivider)
+        var emojiButtonConfiguration = UIButton.Configuration.plain()
+        emojiButtonConfiguration.image = UIImage(named: "emoji")
+        let emojiButton = UIButton(configuration: emojiButtonConfiguration)
+        emojiButton.translatesAutoresizingMaskIntoConstraints = false
+        chatBottomControlContainer.addSubview(emojiButton)
         
-        chatTextField = UITextField(frame: .zero)
-        chatTextField.translatesAutoresizingMaskIntoConstraints = false
-        chatTextField.placeholder = "Type your message here"
-        chatTextField.font = .systemFont(ofSize: 15)
-        chatTextField.borderStyle = .roundedRect
-        chatBottomControlContainer.addSubview(chatTextField)
+        chatTextView = UITextView(frame: .zero)
+        chatTextView.translatesAutoresizingMaskIntoConstraints = false
+        chatTextView.font = .systemFont(ofSize: 15)
+        chatTextView.delegate = self
+        chatBottomControlContainer.addSubview(chatTextView)
+        
+        chatTextViewPlaceholderLabel = UILabel(frame: .zero)
+        chatTextViewPlaceholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        chatTextViewPlaceholderLabel.text = "Type your message here"
+        chatTextViewPlaceholderLabel.textColor = .lightGray
+        chatBottomControlContainer.addSubview(chatTextViewPlaceholderLabel)
+        
+        let attachmentButton = UIButton(frame: .zero)
+        attachmentButton.translatesAutoresizingMaskIntoConstraints = false
+        attachmentButton.setImage(.attachment, for: .normal)
+        chatBottomControlContainer.addSubview(attachmentButton)
+        
+        let paymentButton = UIButton(frame: .zero)
+        paymentButton.translatesAutoresizingMaskIntoConstraints = false
+        paymentButton.setImage(.currency, for: .normal)
+        chatBottomControlContainer.addSubview(paymentButton)
+        
+        let cameraButton = UIButton(frame: .zero)
+        cameraButton.translatesAutoresizingMaskIntoConstraints = false
+        cameraButton.setImage(.cameraFilled, for: .normal)
+        chatBottomControlContainer.addSubview(cameraButton)
         
         var sendButtonConfiguration = UIButton.Configuration.plain()
         sendButtonConfiguration.image = UIImage(
@@ -117,7 +142,7 @@ private extension ChatViewController {
         let sendButton = UIButton(configuration: sendButtonConfiguration)
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         sendButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
-        chatBottomControlContainer.addSubview(sendButton)
+        view.addSubview(sendButton)
         
         NSLayoutConstraint.activate([
             chatTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -125,25 +150,44 @@ private extension ChatViewController {
             chatTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             chatTableView.bottomAnchor.constraint(equalTo: chatBottomControlContainer.topAnchor),
             
-            chatBottomControlContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            chatBottomControlContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            chatBottomControlContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 4),
+            chatBottomControlContainer.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -4),
             chatBottomControlContainer.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor),
             
-            chatControlDivider.leadingAnchor.constraint(equalTo: chatBottomControlContainer.leadingAnchor),
-            chatControlDivider.trailingAnchor.constraint(equalTo: chatBottomControlContainer.trailingAnchor),
-            chatControlDivider.topAnchor.constraint(equalTo: chatBottomControlContainer.topAnchor),
-            chatControlDivider.heightAnchor.constraint(equalToConstant: 0.5),
+            emojiButton.leadingAnchor.constraint(equalTo: chatBottomControlContainer.leadingAnchor, constant: 8),
+            emojiButton.centerYAnchor.constraint(equalTo: chatBottomControlContainer.centerYAnchor),
+            emojiButton.heightAnchor.constraint(equalToConstant: 35),
+            emojiButton.widthAnchor.constraint(equalToConstant: 35),
             
-            chatTextField.leadingAnchor.constraint(equalTo: chatBottomControlContainer.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            chatTextField.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -4),
-            chatTextField.topAnchor.constraint(equalTo: chatBottomControlContainer.topAnchor, constant: 4),
-            chatTextField.bottomAnchor.constraint(equalTo: chatBottomControlContainer.safeAreaLayoutGuide.bottomAnchor),
-            chatTextField.heightAnchor.constraint(equalToConstant: 40),
+            chatTextView.leadingAnchor.constraint(equalTo: emojiButton.trailingAnchor, constant: 4),
+            chatTextView.topAnchor.constraint(equalTo: chatBottomControlContainer.topAnchor, constant: 5),
+            chatTextView.bottomAnchor.constraint(equalTo: chatBottomControlContainer.bottomAnchor, constant: -5),
+            chatTextView.heightAnchor.constraint(equalToConstant: 35),
             
-            sendButton.trailingAnchor.constraint(equalTo: chatBottomControlContainer.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-            sendButton.topAnchor.constraint(equalTo: chatBottomControlContainer.topAnchor, constant: 4),
-            sendButton.heightAnchor.constraint(equalToConstant: 40),
-            sendButton.widthAnchor.constraint(equalToConstant: 40),
+            chatTextViewPlaceholderLabel.leadingAnchor.constraint(equalTo: emojiButton.trailingAnchor, constant: 4),
+            chatTextViewPlaceholderLabel.trailingAnchor.constraint(equalTo: chatTextView.trailingAnchor),
+            chatTextViewPlaceholderLabel.centerYAnchor.constraint(equalTo: chatBottomControlContainer.centerYAnchor),
+            
+            attachmentButton.leadingAnchor.constraint(equalTo: chatTextView.trailingAnchor, constant: 4),
+            attachmentButton.centerYAnchor.constraint(equalTo: chatBottomControlContainer.centerYAnchor),
+            attachmentButton.heightAnchor.constraint(equalToConstant: 35),
+            attachmentButton.widthAnchor.constraint(equalToConstant: 35),
+            
+            paymentButton.leadingAnchor.constraint(equalTo: attachmentButton.trailingAnchor, constant: 4),
+            paymentButton.centerYAnchor.constraint(equalTo: chatBottomControlContainer.centerYAnchor),
+            paymentButton.heightAnchor.constraint(equalToConstant: 35),
+            paymentButton.widthAnchor.constraint(equalToConstant: 35),
+            
+            cameraButton.leadingAnchor.constraint(equalTo: paymentButton.trailingAnchor, constant: 4),
+            cameraButton.trailingAnchor.constraint(equalTo: chatBottomControlContainer.trailingAnchor, constant: -4),
+            cameraButton.centerYAnchor.constraint(equalTo: chatBottomControlContainer.centerYAnchor),
+            cameraButton.heightAnchor.constraint(equalToConstant: 35),
+            cameraButton.widthAnchor.constraint(equalToConstant: 35),
+            
+            sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -4),
+            sendButton.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor),
+            sendButton.heightAnchor.constraint(equalToConstant: 45),
+            sendButton.widthAnchor.constraint(equalToConstant: 45),
         ])
         
         let bottomConstraint = chatBottomControlContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -161,6 +205,12 @@ private extension ChatViewController {
             OutgoingMessageCell.self,
             forCellReuseIdentifier: OutgoingMessageCell.cellIdentifier
         )
+    }
+}
+
+extension ChatViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        chatTextViewPlaceholderLabel.isHidden = !textView.text.isEmpty
     }
 }
 

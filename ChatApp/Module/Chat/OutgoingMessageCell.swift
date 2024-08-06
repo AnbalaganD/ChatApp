@@ -26,6 +26,8 @@ final class OutgoingMessageCell: UITableViewCell {
 
 private extension OutgoingMessageCell {
     func setupView() {
+        backgroundColor = .clear
+        
         let containerView = UIView(frame: .zero)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.backgroundColor = .chatMessageOutgoingBackground
