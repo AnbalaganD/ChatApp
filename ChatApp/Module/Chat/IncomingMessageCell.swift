@@ -28,7 +28,7 @@ private extension IncomingMessageCell {
     func setupView() {
         let containerView = UIView(frame: .zero)
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = .chatMessageBackground
+        containerView.backgroundColor = .chatMessageIncomingBackground1
         containerView.layer.cornerRadius = 10
         containerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         contentView.addSubview(containerView)

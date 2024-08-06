@@ -28,8 +28,7 @@ private extension OutgoingMessageCell {
     func setupView() {
         let containerView = UIView(frame: .zero)
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = .chatMessageBackground
-        containerView.backgroundColor = .chatMessageBackground
+        containerView.backgroundColor = .chatMessageOutgoingBackground
         containerView.layer.cornerRadius = 10
         containerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner]
         contentView.addSubview(containerView)
@@ -37,6 +36,7 @@ private extension OutgoingMessageCell {
         messageLabel = UILabel(frame: .zero)
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.numberOfLines = 0
+        messageLabel.textColor = .white
         containerView.addSubview(messageLabel)
         
         NSLayoutConstraint.activate([
