@@ -110,14 +110,12 @@ private extension ChatViewController {
         chatBottomControlContainer.addSubview(chatTextField)
         
         var sendButtonConfiguration = UIButton.Configuration.plain()
-        sendButtonConfiguration.image = UIImage(systemName: "paperplane.circle.fill")
-        sendButtonConfiguration.imagePadding = 0
-        sendButtonConfiguration.contentInsets = .zero
-        sendButtonConfiguration.cornerStyle = .capsule
+        sendButtonConfiguration.image = UIImage(
+            systemName: "paperplane.circle.fill",
+            withConfiguration: UIImage.SymbolConfiguration(font: .systemFont(ofSize: 30))
+        )
         let sendButton = UIButton(configuration: sendButtonConfiguration)
         sendButton.translatesAutoresizingMaskIntoConstraints = false
-        sendButton.contentMode = .scaleToFill
-        sendButton.backgroundColor = .green
         sendButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         chatBottomControlContainer.addSubview(sendButton)
         
