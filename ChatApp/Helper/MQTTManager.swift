@@ -10,7 +10,7 @@ import MQTTNIO
 import Foundation
 
 final class MQTTManager {
-    static let shared = MQTTManager()
+    nonisolated(unsafe) static let shared = MQTTManager()
     
     private var mqttClient: MQTTClient!
     
