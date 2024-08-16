@@ -16,6 +16,8 @@ class ConfigureClientViewController: UIViewController {
         let textField = UITextField(frame: .zero)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Ex: 172.0.0.1"
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
         return textField
     }()
     
@@ -23,6 +25,9 @@ class ConfigureClientViewController: UIViewController {
         let textField = UITextField(frame: .zero)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Ex: 1883"
+        textField.keyboardType = .numberPad
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
         return textField
     }()
     
@@ -30,6 +35,8 @@ class ConfigureClientViewController: UIViewController {
         let textField = UITextField(frame: .zero)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "topic/sample"
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
         return textField
     }()
 
@@ -93,7 +100,7 @@ class ConfigureClientViewController: UIViewController {
             topicLabel.topAnchor.constraint(equalTo: hostTextField.bottomAnchor, constant: 15),
             
             topicTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            topicTextField.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            topicTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             topicTextField.topAnchor.constraint(equalTo: topicLabel.bottomAnchor),
             topicTextField.heightAnchor.constraint(equalToConstant: 40),
             
