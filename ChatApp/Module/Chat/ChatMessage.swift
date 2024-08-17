@@ -13,7 +13,8 @@ enum ChatMessageType {
     case outgoing
 }
 
-struct ChatMessage {
+struct ChatMessage: Hashable {
+    let id: String = UUID().uuidString
     let messageType: ChatMessageType
     let message: String
 }

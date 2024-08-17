@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum ChatSection: CaseIterable {
+    case all
+}
+
 final class ChatViewController: UIViewController {
     private var chatTableView: UITableView!
     private var chatTextViewPlaceholderLabel: UILabel!
@@ -16,6 +20,7 @@ final class ChatViewController: UIViewController {
     private let lock = NSLock()
     private let mqttManager = MQTTManager.shared
     private var messages = [ChatMessage]()
+    private lazy var diffableDataSource = makeDataSource()
     
     private let topic: String
     init(topic: String) {
@@ -33,7 +38,7 @@ final class ChatViewController: UIViewController {
         setupView()
         registerCell()
         chatTableView.delegate = self
-        chatTableView.dataSource = self
+        chatTableView.dataSource = diffableDataSource
         listenIncommingMessage()
     }
     
@@ -46,10 +51,7 @@ final class ChatViewController: UIViewController {
                             ChatMessage(messageType: .incoming, message: textMessage)
                         )
                     }
-                    
-                    await MainActor.run {
-                        chatTableView.reloadData()
-                    }
+                    updateDataSource(message: messages)
                 }
             }
         }
@@ -66,7 +68,7 @@ final class ChatViewController: UIViewController {
                 messages.append(
                     ChatMessage(messageType: .outgoing, message: message)
                 )
-                chatTableView.reloadData()
+                updateDataSource(message: messages)
             }
             
             chatTextView.text = ""
@@ -206,6 +208,35 @@ private extension ChatViewController {
             forCellReuseIdentifier: OutgoingMessageCell.cellIdentifier
         )
     }
+
+    func makeDataSource() -> UITableViewDiffableDataSource<ChatSection, ChatMessage> {
+        UITableViewDiffableDataSource<ChatSection, ChatMessage>(tableView: chatTableView) { tableView, indexPath, itemIdentifier in
+            switch itemIdentifier.messageType {
+            case .incoming:
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: IncomingMessageCell.cellIdentifier,
+                    for: indexPath
+                ) as! IncomingMessageCell
+                cell.setupData(itemIdentifier.message)
+                return cell
+            case .outgoing:
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: OutgoingMessageCell.cellIdentifier,
+                    for: indexPath
+                ) as! OutgoingMessageCell
+                cell.setupData(itemIdentifier.message)
+                return cell
+            }
+        }
+    }
+
+    func updateDataSource(message: [ChatMessage]) {
+        var snapshot = NSDiffableDataSourceSnapshot<ChatSection, ChatMessage>()
+        snapshot.appendSections(ChatSection.allCases)
+        
+        snapshot.appendItems(message, toSection: .all)
+        diffableDataSource.apply(snapshot, animatingDifferences: false)
+    }
 }
 
 extension ChatViewController: UITextViewDelegate {
@@ -214,30 +245,7 @@ extension ChatViewController: UITextViewDelegate {
     }
 }
 
-extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let message = messages[indexPath.row]
-        
-        if message.messageType == .incoming {
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: IncomingMessageCell.cellIdentifier,
-                for: indexPath
-            ) as! IncomingMessageCell
-            cell.setupData(messages[indexPath.row].message)
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: OutgoingMessageCell.cellIdentifier,
-                for: indexPath
-            ) as! OutgoingMessageCell
-            cell.setupData(messages[indexPath.row].message)
-            return cell
-        }
-    }
+extension ChatViewController: UITableViewDelegate {
 }
 
 #Preview {
