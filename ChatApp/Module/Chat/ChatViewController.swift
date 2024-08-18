@@ -112,6 +112,7 @@ private extension ChatViewController {
         chatTextView = UITextView(frame: .zero)
         chatTextView.translatesAutoresizingMaskIntoConstraints = false
         chatTextView.font = .systemFont(ofSize: 15)
+        chatTextView.autocapitalizationType = .none
         chatTextView.delegate = self
         chatBottomControlContainer.addSubview(chatTextView)
         
